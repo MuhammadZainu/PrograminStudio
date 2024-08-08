@@ -1,20 +1,37 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
-export default function App() {
+import AlbumsScreen from './src/screens/Onboarding/AlbumsScreen';
+import FormScreen from './src/screens/Onboarding/FormScreen';
+import SignUpScreen from './src/screens/Onboarding/signup';
+
+const Stack = createStackNavigator();
+
+const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer screenOptions={{ headerShown: false }}>
+      <Stack.Navigator initialRouteName="FormScreen"screenOptions={{ headerShown: false }} >
+        <Stack.Screen
+          name="FormScreen"
+          component={FormScreen}
+          options={{ title: 'Form Screen' }}
+        />
+        <Stack.Screen
+        screenOptions={{ headerShown: false }}
+          name="AlbumsScreen"
+          component={AlbumsScreen}
+          options={{ title: 'Albums Screen' }}
+        />
+           <Stack.Screen
+        screenOptions={{ headerShown: false }}
+          name="SignUpScreen"
+          component={SignUpScreen}
+          options={{ title: 'Albums Screen' }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
